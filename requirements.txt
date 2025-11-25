@@ -1,0 +1,5 @@
+fastapi==0.115.*
+uvicorn[standard]==0.30.*
+pydub==0.25.*
+google-cloud-storage==2.*
+google-cloud-firestore==2.*
