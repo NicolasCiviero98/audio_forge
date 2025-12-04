@@ -8,8 +8,7 @@ import uvicorn
 
 app = FastAPI(title="AudioForge")
 
-# Allowed origins – adjust to your frontend URLs
-
+# Parse CORS origins (comma-separated string)
 origins = [o.strip() for o in CORS_ORIGINS.split(",") if o.strip()]
 
 app.add_middleware(
@@ -24,4 +23,10 @@ app.add_middleware(
 app.include_router(forge_router, prefix="/forge", tags=["Forge"])
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.5", port=8080, reload=True)
+    # IMPORTANT: use import string so reload works
+    uvicorn.run(
+        "app.main:app",    # <-- correct import string
+        host="127.0.0.5",
+        port=8080,
+        reload=True
+    )
